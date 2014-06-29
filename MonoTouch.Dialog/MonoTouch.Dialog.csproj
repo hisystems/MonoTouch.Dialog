@@ -102,6 +102,7 @@
     <Compile Include="Elements\Json.cs" />
     <Compile Include="DynamicSearchDelegate.cs" />
     <Compile Include="EditingSource.cs" />
+    <Compile Include="PopoverRootElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
