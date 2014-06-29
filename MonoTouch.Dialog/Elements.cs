@@ -1454,7 +1454,6 @@ namespace MonoTouch.Dialog
 		bool isPassword, becomeResponder;
 		UITextField entry;
 		string placeholder;
-		static UIFont font = UIFont.BoldSystemFontOfSize (17);
 
 		public event EventHandler Changed;
 		public event Func<bool> ShouldReturn;
@@ -1510,6 +1509,8 @@ namespace MonoTouch.Dialog
 		//
 		SizeF ComputeEntryPosition (UITableView tv, UITableViewCell cell)
 		{
+			// Use the same font from the text label.
+			var font = cell.TextLabel.Font;
 			float maxWidth = -15; // If all EntryElements have a null Caption, align UITextField with the Caption offset of normal cells (at 10px).
 			float maxHeight = font.LineHeight;
 
@@ -1561,27 +1562,24 @@ namespace MonoTouch.Dialog
 		UITableViewCell cell;
 		public override UITableViewCell GetCell (UITableView tv)
 		{
+			const float TextFieldRightMargin = 12;
+
 			if (cell == null) {
 				cell = new UITableViewCell (UITableViewCellStyle.Default, CellKey);
 				cell.SelectionStyle = UITableViewCellSelectionStyle.None;
-				cell.TextLabel.Font = font;
-
 			} 
 			cell.TextLabel.Text = Caption;
 
 			var offset = (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) ? 20 : 90;
 			cell.Frame = new RectangleF(cell.Frame.X, cell.Frame.Y, tv.Frame.Width-offset, cell.Frame.Height);
 			SizeF size = ComputeEntryPosition (tv, cell);
-			float yOffset = (cell.ContentView.Bounds.Height - size.Height) / 2 - 1;
-			float width = cell.ContentView.Bounds.Width - size.Width;
-			if (textalignment == UITextAlignment.Right) {
-				// Add padding if right aligned
-				width -= 10;
-			}
+			float yOffset = (cell.ContentView.Bounds.Height - size.Height) / 2;
+			float width = cell.ContentView.Bounds.Width - size.Width - TextFieldRightMargin;
 			var entryFrame = new RectangleF (size.Width, yOffset, width, size.Height);
 
 			if (entry == null) {
 				entry = CreateTextField (entryFrame);
+				entry.Font = cell.TextLabel.Font;
 				entry.EditingChanged += delegate {
 					if(NotifyChangedOnKeyStroke) {
 						FetchValue ();
