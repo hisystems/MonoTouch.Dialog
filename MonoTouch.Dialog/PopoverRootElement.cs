@@ -16,7 +16,7 @@ namespace MonoTouch.Dialog
 		/// Typically in MonoTouch Dialog this is sourced from a summary section.
 		/// But because a dialog is being displayed this approach does not work.
 		/// </remarks>
-		public string value = string.Empty;
+		private string value = string.Empty;
 
 		private UIPopoverController popoverViewController;
 
