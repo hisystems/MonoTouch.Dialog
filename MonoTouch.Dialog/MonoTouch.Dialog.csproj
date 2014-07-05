@@ -104,6 +104,7 @@
     <Compile Include="EditingSource.cs" />
     <Compile Include="PopoverRootElement.cs" />
     <Compile Include="DatePopoverRootElement.cs" />
+    <Compile Include="Elements\StyledRootElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
