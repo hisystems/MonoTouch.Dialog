@@ -19,11 +19,18 @@ namespace MonoTouch.Dialog
 		private string value = string.Empty;
 
 		private UIPopoverController popoverViewController;
+		private readonly UIPopoverArrowDirection arrowDirection;
 
-		public PopoverRootElement(string caption, string value, Func<RootElement, UIViewController> createOnSelected)
+		public PopoverRootElement(
+			string caption, 
+			string value, 
+			Func<RootElement, UIViewController> createOnSelected, 
+			UIPopoverArrowDirection arrowDirection = UIPopoverArrowDirection.Any
+		)
 			: base(caption, createOnSelected)
 		{
 			this.value = value;
+			this.arrowDirection = arrowDirection;
 		}
 
 		public string Value
@@ -82,7 +89,7 @@ namespace MonoTouch.Dialog
 
 			var selectedCell = tableView.CellAt(path);
 
-			popoverViewController.PresentFromRect(selectedCell.Frame, dvc.View, UIPopoverArrowDirection.Any, animated: true);
+			popoverViewController.PresentFromRect(selectedCell.Frame, dvc.View, this.arrowDirection, animated: true);
 		}
 	}
 }
