@@ -1,5 +1,5 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 
 namespace MonoTouch.Dialog
 {
@@ -23,7 +23,7 @@ namespace MonoTouch.Dialog
 			this.Image = image;
 		}
 
-		public override MonoTouch.UIKit.UITableViewCell GetCell(MonoTouch.UIKit.UITableView tv)
+		public override UIKit.UITableViewCell GetCell(UIKit.UITableView tv)
 		{
 			var cell = base.GetCell(tv);
 

@@ -1,0 +1,7 @@
+/Users/tobywicks/Companies/HiSystems/Systems/MonoTouch.Dialog/MonoTouch.Dialog/obj/iPhoneSimulator/Debug/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
+/Users/tobywicks/Companies/HiSystems/Systems/MonoTouch.Dialog/MonoTouch.Dialog/obj/iPhoneSimulator/Debug/optimized/
+/Users/tobywicks/Companies/HiSystems/Systems/MonoTouch.Dialog/MonoTouch.Dialog/obj/iPhoneSimulator/Debug/MonoTouch.Dialog.Images.arrow.png
+/Users/tobywicks/Companies/HiSystems/Systems/MonoTouch.Dialog/MonoTouch.Dialog/bin/iPhoneSimulator/Debug/MonoTouch.Dialog.dll.mdb
+/Users/tobywicks/Companies/HiSystems/Systems/MonoTouch.Dialog/MonoTouch.Dialog/bin/iPhoneSimulator/Debug/MonoTouch.Dialog.dll
+/Users/tobywicks/Companies/HiSystems/Systems/MonoTouch.Dialog/MonoTouch.Dialog/obj/iPhoneSimulator/Debug/MonoTouch.Dialog.dll
+/Users/tobywicks/Companies/HiSystems/Systems/MonoTouch.Dialog/MonoTouch.Dialog/obj/iPhoneSimulator/Debug/MonoTouch.Dialog.dll.mdb

@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using CoreGraphics;
+using UIKit;
+using Foundation;
 
 namespace MonoTouch.Dialog
 {
@@ -43,7 +43,7 @@ namespace MonoTouch.Dialog
 			var sbounds = tv.Frame;
 			var vbounds = indicator.Bounds;
 
-			indicator.Frame = new RectangleF((sbounds.Width-vbounds.Width)/2, 12, vbounds.Width, vbounds.Height);
+			indicator.Frame = new CGRect((sbounds.Width-vbounds.Width)/2, 12, vbounds.Width, vbounds.Height);
 			indicator.StartAnimating ();
 
 			cell.Add (indicator);

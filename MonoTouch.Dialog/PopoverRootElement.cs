@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using MonoTouch.Dialog;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace MonoTouch.Dialog
 {
@@ -88,7 +88,7 @@ namespace MonoTouch.Dialog
 			return cell;
 		}
 
-		public override void Selected(DialogViewController dvc, MonoTouch.UIKit.UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
+		public override void Selected(DialogViewController dvc, UIKit.UITableView tableView, Foundation.NSIndexPath path)
 		{
 			tableView.DeselectRow(path, animated: true);
 

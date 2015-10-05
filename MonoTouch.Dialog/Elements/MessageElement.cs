@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoTouch.Dialog {
 
@@ -23,7 +23,7 @@ namespace MonoTouch.Dialog {
 		static MessageSummaryView ()
 		{
 			using (var colorspace = CGColorSpace.CreateDeviceRGB ()){
-				gradient = new CGGradient (colorspace, new float [] { /* first */ .52f, .69f, .96f, 1, /* second */ .12f, .31f, .67f, 1 }, null); //new float [] { 0, 1 });
+				gradient = new CGGradient (colorspace, new nfloat [] { /* first */ .52f, .69f, .96f, 1, /* second */ .12f, .31f, .67f, 1 }, null); //new float [] { 0, 1 });
 			}
 		}
 		
@@ -43,24 +43,24 @@ namespace MonoTouch.Dialog {
 			SetNeedsDisplay ();
 		}
 		
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			const int padright = 21;
 			var ctx = UIGraphics.GetCurrentContext ();
 			float boxWidth;
-			SizeF ssize;
+			CGSize ssize;
 			
 			if (MessageCount > 0){
 				var ms = MessageCount.ToString ();
-				ssize = StringSize (ms, CountFont);
-				boxWidth = Math.Min (22 + ssize.Width, 18);
-				var crect = new RectangleF (Bounds.Width-20-boxWidth, 32, boxWidth, 16);
+				ssize = UIKit.UIStringDrawing.StringSize (ms, CountFont);
+				boxWidth = Math.Min (22 + (float)ssize.Width, 18);
+				var crect = new CGRect (Bounds.Width-20-boxWidth, 32, boxWidth, 16);
 				
 				UIColor.Gray.SetFill ();
 				GraphicsUtil.FillRoundedRect (ctx, crect, 3);
 				UIColor.White.SetColor ();
 				crect.X += 5;
-				DrawString (ms, crect, CountFont);
+				UIKit.UIStringDrawing.DrawString(ms, crect, CountFont);
 				
 				boxWidth += padright;
 			} else
@@ -78,27 +78,27 @@ namespace MonoTouch.Dialog {
 				label = Date.ToString ("dddd");
 			else
 				label = Date.ToShortDateString ();
-			ssize = StringSize (label, SubjectFont);
-			float dateSize = ssize.Width + padright + 5;
-			DrawString (label, new RectangleF (Bounds.Width-dateSize, 6, dateSize, 14), SubjectFont, UILineBreakMode.Clip, UITextAlignment.Left);
+			ssize = UIKit.UIStringDrawing.StringSize (label, SubjectFont);
+			float dateSize = (float)ssize.Width + padright + 5;
+			UIKit.UIStringDrawing.DrawString (label, new CGRect (Bounds.Width-dateSize, 6, dateSize, 14), SubjectFont, UILineBreakMode.Clip, UITextAlignment.Left);
 			
 			const int offset = 33;
-			float bw = Bounds.Width-offset;
+			float bw = (float)Bounds.Width-offset;
 			
 			UIColor.Black.SetColor ();
-			DrawString (Sender, new PointF (offset, 2), bw-dateSize, SenderFont, UILineBreakMode.TailTruncation);
-			DrawString (Subject, new PointF (offset, 23), bw-offset-boxWidth, SubjectFont, UILineBreakMode.TailTruncation);
+			UIKit.UIStringDrawing.DrawString (Sender, new CGPoint (offset, 2), bw-dateSize, SenderFont, UILineBreakMode.TailTruncation);
+			UIKit.UIStringDrawing.DrawString (Subject, new CGPoint (offset, 23), bw-offset-boxWidth, SubjectFont, UILineBreakMode.TailTruncation);
 			
 			//UIColor.Black.SetFill ();
 			//ctx.FillRect (new RectangleF (offset, 40, bw-boxWidth, 34));
 			UIColor.Gray.SetColor ();
-			DrawString (Body, new RectangleF (offset, 40, bw-boxWidth, 34), TextFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
+			UIKit.UIStringDrawing.DrawString (Body, new CGRect (offset, 40, bw-boxWidth, 34), TextFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
 			
 			if (NewFlag){
 				ctx.SaveState ();
-				ctx.AddEllipseInRect (new RectangleF (10, 32, 12, 12));
+				ctx.AddEllipseInRect (new CGRect (10, 32, 12, 12));
 				ctx.Clip ();
-				ctx.DrawLinearGradient (gradient, new PointF (10, 32), new PointF (22, 44), CGGradientDrawingOptions.DrawsAfterEndLocation);
+				ctx.DrawLinearGradient (gradient, new CGPoint (10, 32), new CGPoint (22, 44), CGGradientDrawingOptions.DrawsAfterEndLocation);
 				ctx.RestoreState ();
 			}
 			
