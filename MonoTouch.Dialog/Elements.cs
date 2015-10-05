@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 using MonoTouch.Dialog.Utilities;
 using CoreAnimation;
