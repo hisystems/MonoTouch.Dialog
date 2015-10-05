@@ -1535,7 +1535,7 @@ namespace MonoTouch.Dialog
 				}
 			}
 
-			return new CGSize(25 + maxWidth, maxHeight);
+			return new CGSize(50 + maxWidth, maxHeight);
 		}
 
 		protected virtual UITextField CreateTextField (CGRect frame)
