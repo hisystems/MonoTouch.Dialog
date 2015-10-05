@@ -3,3 +3,6 @@
 *.pidb
 
 .DS_Store
+
+obj/
+
