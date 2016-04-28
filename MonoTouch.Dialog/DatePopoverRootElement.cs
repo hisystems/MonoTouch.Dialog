@@ -40,7 +40,7 @@ namespace MonoTouch.Dialog
 		{
 			this.datePicker = new UIDatePicker();
 			this.datePicker.Mode = UIDatePickerMode.Date;
-			this.datePicker.Date = (NSDate)initialDate;
+			this.datePicker.Date = (NSDate)DateTime.SpecifyKind(initialDate, DateTimeKind.Local);
 
 			var pickerViewController = new UIViewController();
 			pickerViewController.Title = "Date";
