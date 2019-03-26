@@ -131,6 +131,7 @@
     <Compile Include="PopoverRootElement.cs" />
     <Compile Include="DatePopoverRootElement.cs" />
     <Compile Include="Elements\StyledRootElement.cs" />
+    <Compile Include="ProgressViewElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
