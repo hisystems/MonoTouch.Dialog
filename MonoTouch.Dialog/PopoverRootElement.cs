@@ -85,6 +85,8 @@ namespace MonoTouch.Dialog
 			cell.TextLabel.Text = this.Caption;
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 
+			SetCellEnabledState (cell);
+
 			return cell;
 		}
 

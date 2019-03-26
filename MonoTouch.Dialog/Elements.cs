@@ -43,7 +43,9 @@ namespace MonoTouch.Dialog
 		///  The caption to display for this given element
 		/// </summary>
 		public string Caption;
-		
+
+		private bool disabled = false;
+
 		/// <summary>
 		///  Initializes the element with the given caption.
 		/// </summary>
@@ -58,6 +60,23 @@ namespace MonoTouch.Dialog
 		public void Dispose ()
 		{
 			Dispose (true);
+		}
+
+		public void Disable()
+		{
+			this.disabled = true;
+
+			RefreshCell ();
+		}
+
+		private void RefreshCell ()
+		{
+			var root = GetImmediateRootElement ();
+
+			if (root == null || root.TableView == null)
+				return;
+
+			root.TableView.ReloadRows (new NSIndexPath [] { IndexPath }, UITableViewRowAnimation.None);
 		}
 
 		protected virtual void Dispose (bool disposing)
@@ -143,6 +162,17 @@ namespace MonoTouch.Dialog
 		/// </param>
 		public virtual void Selected (DialogViewController dvc, UITableView tableView, NSIndexPath path)
 		{
+		}
+
+		protected void SetCellEnabledState (UITableViewCell cell)
+		{
+			cell.UserInteractionEnabled = !disabled;
+
+			if (cell.TextLabel != null)
+				cell.TextLabel.Enabled = !disabled;
+
+			if (cell.DetailTextLabel != null)
+				cell.DetailTextLabel.Enabled = !disabled;
 		}
 
 		/// <summary>
@@ -680,7 +710,9 @@ namespace MonoTouch.Dialog
 			// The check is needed because the cell might have been recycled.
 			if (cell.DetailTextLabel != null)
 				cell.DetailTextLabel.Text = Value == null ? "" : Value;
-			
+
+			SetCellEnabledState (cell);
+
 			return cell;
 		}
 
@@ -814,6 +846,7 @@ namespace MonoTouch.Dialog
 				cell.SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			}
 			PrepareCell (cell);
+			SetCellEnabledState (cell);
 			return cell;
 		}
 		
