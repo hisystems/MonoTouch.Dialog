@@ -22,10 +22,11 @@ namespace MonoTouch.Dialog
 			this.initialDate = initialDate;
 		}
 
-		public DatePopoverRootElement(string caption, DateTime initialDate, Action<DateTime> dateSelected)
+		public DatePopoverRootElement(string caption, DateTime initialDate, Action<DateTime> dateSelected = null)
 			: this(caption, initialDate)
 		{
-			this.DateSelected += dateSelected;
+			if (dateSelected != null)
+				this.DateSelected += dateSelected;
 		}
 
 		public DateTime DateValue
