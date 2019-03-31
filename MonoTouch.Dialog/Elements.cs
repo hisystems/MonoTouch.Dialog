@@ -1902,9 +1902,9 @@ namespace MonoTouch.Dialog
 	}
 	
 	public partial class DateElement : DateTimeElement {
-		public DateElement (string caption, DateTime date) : base (caption, date)
+		public DateElement (string caption, DateTime date, NSDateFormatterStyle dateFormat = NSDateFormatterStyle.Medium) : base (caption, date)
 		{
-			fmt.DateStyle = NSDateFormatterStyle.Medium;
+			fmt.DateStyle = dateFormat;
 		}
 		
 		public override string FormatDate (DateTime dt)
