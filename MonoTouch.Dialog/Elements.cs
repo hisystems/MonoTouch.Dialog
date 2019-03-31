@@ -1862,14 +1862,14 @@ namespace MonoTouch.Dialog
 			public MyViewController (DateTimeElement container)
 			{
 				this.container = container;
+
+				this.NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, e) => Close());
+				this.NavigationItem.RightBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Done, (sender, e) => Done ());
 			}
 			
 			public override void ViewWillDisappear (bool animated)
 			{
 				base.ViewWillDisappear (animated);
-				container.DateValue = (DateTime)container.datePicker.Date;
-				if (container.DateSelected != null)
-					container.DateSelected (container);
 			}
 			
 			public override void DidRotate (UIInterfaceOrientation fromInterfaceOrientation)
@@ -1877,7 +1877,21 @@ namespace MonoTouch.Dialog
 				base.DidRotate (fromInterfaceOrientation);
 				container.datePicker.Frame = PickerFrameWithSize (container.datePicker.SizeThatFits (CGSize.Empty));
 			}
-			
+
+			private void Close()
+			{
+				this.NavigationController.PopViewController(animated: true);
+			}
+
+			private void Done ()
+			{
+				container.DateValue = (DateTime)container.datePicker.Date;
+				if (container.DateSelected != null)
+					container.DateSelected (container);
+
+				Close ();
+			}
+
 			public bool Autorotate { get; set; }
 			
 			public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
